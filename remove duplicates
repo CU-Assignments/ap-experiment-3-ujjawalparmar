@@ -1,0 +1,27 @@
+
+### Aim: To remove all nodes containing duplicate values from a sorted linked list, keeping only unique elements, and return the modified sorted linked list.
+
+### Objectice:
+To identify and remove all occurrences of duplicate elements in a sorted linked list.
+To traverse and modify the linked list efficiently while maintaining its sorted order.
+To implement an optimal in-place solution with minimal time and space complexity.
+To enhance problem-solving skills in linked list manipulation and pointer adjustments.
+
+### Code: 
+class Solution {
+public:
+  ListNode* deleteDuplicates(ListNode* head) {
+    ListNode dummy(0, head);
+    ListNode* prev = &dummy;
+    while (head) {
+      while (head->next && head->val == head->next->val)
+        head = head->next;
+      if (prev->next == head)
+        prev = prev->next;
+      else
+        prev->next = head->next;
+      head = head->next;
+    }
+    return dummy.next;
+  }
+};
